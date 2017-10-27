@@ -1,0 +1,24 @@
+---
+- descriptor: "pip-services-commons:logger:console:default:1.0"
+  level: "trace"
+
+- descriptor: "pip-services-emaildelivery:controller:default:default:1.0"
+  message:
+    from: 'somebody@somewhere.com'
+    to: 'somebody@somewhere.com'
+  parameters:
+    company: 'My Company'
+  connection:
+    service: 'Gmail'
+    host: 'smtp.gmail.com'
+    secure_connection: true
+    port: 465
+  credential:
+    username: 'somebody@gmail.com'
+    password: 'pass123'
+
+- descriptor: "pip-services-emaildelivery:service:http:default:1.0"
+  connection:
+    protocol: "http"
+    host: "0.0.0.0"
+    port: 8080
