@@ -1,8 +1,8 @@
 {
     "name": "pip-services-emaildelivery-node",
-    "version": "1.1.0",
+    "version": "1.0.0",
     "author": "Conceptual Vision Consulting LLC",
-    "description": "EmailDelivery sending microservice in Node.js",
+    "description": "Email delivery sending microservice in Node.js",
     "contributors": [
         {
             "name": "Sergey Seroukhov",
@@ -19,7 +19,7 @@
     "noAnalyze": true,
     "repository": {
         "type": "git",
-        "url": "ssh://git@github.com:pip-services-users/pip-services-emaildelivery-node.git"
+        "url": "ssh://git@github.com:pip-services-infrastructure/pip-services-emaildelivery-node.git"
     },
     "license": "MIT",
     "engines": {
