@@ -34,7 +34,7 @@ To learn more about Seneca microservices framework to go http://senecajs.org
     ...
     "dependencies": {
         ....
-        "pip-services-emaildelivery-node": "^1.0.0",
+        "pip-services-email-node": "^1.0.0",
         ...
     }
 }
@@ -79,10 +79,10 @@ var config = {
     }
 };
 
-var plugin = require('pip-services-emaildelivery-node').EmailDeliverySenecaPlugin;
+var plugin = require('pip-services-email-node').EmailSenecaPlugin;
 
 seneca.use(plugin, config);
 ```
 
 You can use the microservice by calling seneca commands directly as described in [Seneca Protocol](SenecaProtocolV1.md)
-or by using [EmailDeliverySenecaClient](https://github.com/pip-services-users/pip-clients-emaildelivery-node/NodeClientApiV1.md/#client_seneca)
+or by using [EmailSenecaClient](https://github.com/pip-services-users/pip-clients-email-node/NodeClientApiV1.md/#client_seneca)

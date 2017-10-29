@@ -1,3 +1,3 @@
-let EmailDeliveryLambdaFunction = require('../obj/src/container/EmailDeliveryLambdaFunction').EmailDeliveryLambdaFunction;
+let EmailLambdaFunction = require('../obj/src/container/EmailLambdaFunction').EmailLambdaFunction;
 
-module.exports = new EmailDeliveryLambdaFunction().getHandler();
+module.exports = new EmailLambdaFunction().getHandler();

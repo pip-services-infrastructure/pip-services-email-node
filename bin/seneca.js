@@ -1,1 +1,1 @@
-module.exports = require('../obj/src/container/EmailDeliverySenecaPlugin');
+module.exports = require('../obj/src/container/EmailSenecaPlugin');

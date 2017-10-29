@@ -23,7 +23,7 @@ Controller has the following configuration properties:
 
 Example:
 ```yaml
-- descriptor: "pip-services-emaildelivery:controller:default:default:1.0"
+- descriptor: "pip-services-email:controller:default:default:1.0"
   message:
     from: 'somebody@somewhere.com'
     to: 'somebody@somewhere.com'
@@ -55,7 +55,7 @@ A detailed description of HTTP protocol version 1 can be found [here](HttpProtoc
 
 Example:
 ```yaml
-- descriptor: "pip-services-emaildelivery:service:http:default:1.0"
+- descriptor: "pip-services-email:service:http:default:1.0"
   connection:
     protocol: "http"
     host: "0.0.0.0"
@@ -74,7 +74,7 @@ A detail description of Seneca protocol version 1 can be found [here](SenecaProt
 
 Example:
 ```yaml
-- descriptor: "pip-services-emaildelivery:service:seneca:default:1.0"
+- descriptor: "pip-services-email:service:seneca:default:1.0"
   connection:
     protocol: "http"
     host: "0.0.0.0"

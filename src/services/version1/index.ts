@@ -1,2 +1,2 @@
-export { EmailDeliveryHttpServiceV1 } from './EmailDeliveryHttpServiceV1';
-export { EmailDeliverySenecaServiceV1 } from './EmailDeliverySenecaServiceV1';
+export { EmailHttpServiceV1 } from './EmailHttpServiceV1';
+export { EmailSenecaServiceV1 } from './EmailSenecaServiceV1';

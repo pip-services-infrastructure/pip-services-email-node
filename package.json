@@ -1,5 +1,5 @@
 {
-    "name": "pip-services-emaildelivery-node",
+    "name": "pip-services-email-node",
     "version": "1.0.0",
     "author": "Conceptual Vision Consulting LLC",
     "description": "Email delivery sending microservice in Node.js",
@@ -19,7 +19,7 @@
     "noAnalyze": true,
     "repository": {
         "type": "git",
-        "url": "ssh://git@github.com:pip-services-infrastructure/pip-services-emaildelivery-node.git"
+        "url": "ssh://git@github.com:pip-services-infrastructure/pip-services-email-node.git"
     },
     "license": "MIT",
     "engines": {

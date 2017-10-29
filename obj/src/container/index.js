@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var EmailDeliveryProcess_1 = require("./EmailDeliveryProcess");
-exports.EmailDeliveryProcess = EmailDeliveryProcess_1.EmailDeliveryProcess;
-var EmailDeliverySenecaPlugin_1 = require("./EmailDeliverySenecaPlugin");
-exports.EmailDeliverySenecaPlugin = EmailDeliverySenecaPlugin_1.EmailDeliverySenecaPlugin;
-var EmailDeliveryLambdaFunction_1 = require("./EmailDeliveryLambdaFunction");
-exports.EmailDeliveryLambdaFunction = EmailDeliveryLambdaFunction_1.EmailDeliveryLambdaFunction;
+var EmailProcess_1 = require("./EmailProcess");
+exports.EmailProcess = EmailProcess_1.EmailProcess;
+var EmailSenecaPlugin_1 = require("./EmailSenecaPlugin");
+exports.EmailSenecaPlugin = EmailSenecaPlugin_1.EmailSenecaPlugin;
+var EmailLambdaFunction_1 = require("./EmailLambdaFunction");
+exports.EmailLambdaFunction = EmailLambdaFunction_1.EmailLambdaFunction;
 //# sourceMappingURL=index.js.map

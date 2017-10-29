@@ -1,1 +1,1 @@
-export { EmailDeliveryServiceFactory } from './EmailDeliveryServiceFactory';
+export { EmailServiceFactory } from './EmailServiceFactory';

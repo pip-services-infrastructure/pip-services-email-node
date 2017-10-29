@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var EmailDeliveryServiceFactory_1 = require("./EmailDeliveryServiceFactory");
-exports.EmailDeliveryServiceFactory = EmailDeliveryServiceFactory_1.EmailDeliveryServiceFactory;
+var EmailServiceFactory_1 = require("./EmailServiceFactory");
+exports.EmailServiceFactory = EmailServiceFactory_1.EmailServiceFactory;
 //# sourceMappingURL=index.js.map

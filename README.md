@@ -14,7 +14,7 @@ The microservice currently supports the following deployment options:
 * [Configuration Guide](doc/Configuration.md)
 * [Deployment Guide](doc/Deployment.md)
 * Client SDKs
-  - [Node.js SDK](https://github.com/pip-services-users/pip-clients-emaildelivery-node)
+  - [Node.js SDK](https://github.com/pip-services-users/pip-clients-email-node)
 * Communication Protocols
   - [HTTP Version 1](doc/HttpProtocolV1.md)
   - [Seneca Version 1](doc/SenecaProtocolV1.md)
@@ -43,7 +43,7 @@ class EmailRecipientV1 {
     public language: string;
 }
 
-interface IEmailDeliveryV1 {
+interface IEmailV1 {
     sendMessage(correlationId: string, message: EmailMessageV1, parameters: ConfigParams,
         callback?: (err: any) => void): void;
     sendMessageToRecipient(correlationId: string, recipient: EmailRecipientV1,
@@ -72,7 +72,7 @@ to complete verification procedure
 
 Right now the only way to get the microservice is to check it out directly from github repository
 ```bash
-git clone git@github.com:pip-services-users/pip-services-emaildelivery-node.git
+git clone git@github.com:pip-services-users/pip-services-email-node.git
 ```
 
 Pip.Service team is working to implement packaging and make stable releases available for your 
@@ -88,7 +88,7 @@ Example of microservice configuration
 - descriptor: "pip-services-commons:logger:console:default:1.0"
   level: "trace"
 
-- descriptor: "pip-services-emaildelivery:controller:default:default:1.0"
+- descriptor: "pip-services-email:controller:default:default:1.0"
   message:
     from: 'somebody@somewhere.com'
     to: 'somebody@somewhere.com'
@@ -101,7 +101,7 @@ Example of microservice configuration
     username: 'somebody@gmail.com'
     password: 'pass123'
   
-- descriptor: "pip-services-emaildelivery:service:http:default:1.0"
+- descriptor: "pip-services-email:service:http:default:1.0"
   connection:
     protocol: "http"
     host: "0.0.0.0"
@@ -126,7 +126,7 @@ If you use Node.js then you should add dependency to the client SDK into **packa
     ...
     "dependencies": {
         ....
-        "pip-clients-emaildelivery-node": "^1.0.*",
+        "pip-clients-email-node": "^1.0.*",
         ...
     }
 }
@@ -134,7 +134,7 @@ If you use Node.js then you should add dependency to the client SDK into **packa
 
 Inside your code get the reference to the client SDK
 ```javascript
-var sdk = new require('pip-clients-emaildelivery-node');
+var sdk = new require('pip-clients-email-node');
 ```
 
 Define client configuration parameters that match configuration of the microservice external API
@@ -152,7 +152,7 @@ var config = {
 Instantiate the client and open connection to the microservice
 ```javascript
 // Create the client instance
-var client = sdk.EmailDeliveryHttpClientV1(config);
+var client = sdk.EmailHttpClientV1(config);
 
 // Connect to the microservice
 client.open(null, function(err) {

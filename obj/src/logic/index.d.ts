@@ -1,2 +1,2 @@
-export { IEmailDeliveryController } from './IEmailDeliveryController';
-export { EmailDeliveryController } from './EmailDeliveryController';
+export { IEmailController } from './IEmailController';
+export { EmailController } from './EmailController';

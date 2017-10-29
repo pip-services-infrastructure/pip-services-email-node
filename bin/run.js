@@ -1,7 +1,7 @@
-let EmailDeliveryProcess = require('../obj/src/container/EmailDeliveryProcess').EmailDeliveryProcess;
+let EmailProcess = require('../obj/src/container/EmailProcess').EmailProcess;
 
 try {
-    new EmailDeliveryProcess().run(process.argv);
+    new EmailProcess().run(process.argv);
 } catch (ex) {
     console.error(ex);
 }

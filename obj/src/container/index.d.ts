@@ -1,3 +1,3 @@
-export { EmailDeliveryProcess } from './EmailDeliveryProcess';
-export { EmailDeliverySenecaPlugin } from './EmailDeliverySenecaPlugin';
-export { EmailDeliveryLambdaFunction } from './EmailDeliveryLambdaFunction';
+export { EmailProcess } from './EmailProcess';
+export { EmailSenecaPlugin } from './EmailSenecaPlugin';
+export { EmailLambdaFunction } from './EmailLambdaFunction';

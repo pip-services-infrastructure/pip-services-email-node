@@ -7,8 +7,8 @@ import { ConfigParams } from 'pip-services-commons-node';
 import { Descriptor } from 'pip-services-commons-node';
 import { References } from 'pip-services-commons-node';
 
-import { EmailDeliveryController } from '../../../src/logic/EmailDeliveryController';
-import { EmailDeliveryHttpServiceV1 } from '../../../src/services/version1/EmailDeliveryHttpServiceV1';
+import { EmailController } from '../../../src/logic/EmailController';
+import { EmailHttpServiceV1 } from '../../../src/services/version1/EmailHttpServiceV1';
 
 let httpConfig = ConfigParams.fromTuples(
     "connection.protocol", "http",
@@ -16,21 +16,21 @@ let httpConfig = ConfigParams.fromTuples(
     "connection.port", 3000
 );
 
-suite('EmailDeliveryHttpServiceV1', ()=> {
-    let service: EmailDeliveryHttpServiceV1;
+suite('EmailHttpServiceV1', ()=> {
+    let service: EmailHttpServiceV1;
 
     let rest: any;
 
     suiteSetup((done) => {
-        let controller = new EmailDeliveryController();
+        let controller = new EmailController();
         controller.configure(new ConfigParams());
 
-        service = new EmailDeliveryHttpServiceV1();
+        service = new EmailHttpServiceV1();
         service.configure(httpConfig);
 
         let references: References = References.fromTuples(
-            new Descriptor('pip-services-emaildelivery', 'controller', 'default', 'default', '1.0'), controller,
-            new Descriptor('pip-services-emaildelivery', 'service', 'http', 'default', '1.0'), service
+            new Descriptor('pip-services-email', 'controller', 'default', 'default', '1.0'), controller,
+            new Descriptor('pip-services-email', 'service', 'http', 'default', '1.0'), service
         );
         controller.setReferences(references);
         service.setReferences(references);
@@ -48,7 +48,7 @@ suite('EmailDeliveryHttpServiceV1', ()=> {
     });
 
     test('Send message', (done) => {
-        rest.post('/email_delivery/send_message',
+        rest.post('/email/send_message',
             {
                 message: {
                     to: 'pipdevs@gmail.com',
