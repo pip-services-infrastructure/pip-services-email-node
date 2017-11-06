@@ -29,7 +29,6 @@ export declare class EmailController implements IConfigurable, IReferenceable, I
     open(correlationId: string, callback: (err: any) => void): void;
     close(correlationId: string, callback: (err: any) => void): void;
     private getLanguageTemplate(value, language?);
-    private compileTemplate(value, language);
     private renderTemplate(value, parameters, language?);
     sendMessage(correlationId: string, message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void): void;
     private makeRecipientParameters(recipient, parameters);
