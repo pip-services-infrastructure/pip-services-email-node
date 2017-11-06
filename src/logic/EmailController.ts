@@ -186,7 +186,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
 
     private makeRecipientParameters(recipient: EmailRecipientV1, parameters: any): ConfigParams {
         parameters = this._parameters.override(parameters);
-        parameters.setAsObject(recipient);
+        parameters.append(recipient);
         return parameters;
     }
 

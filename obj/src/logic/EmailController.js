@@ -129,7 +129,7 @@ class EmailController {
     }
     makeRecipientParameters(recipient, parameters) {
         parameters = this._parameters.override(parameters);
-        parameters.setAsObject(recipient);
+        parameters.append(recipient);
         return parameters;
     }
     sendMessageToRecipient(correlationId, recipient, message, parameters, callback) {
