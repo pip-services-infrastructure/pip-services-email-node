@@ -37,12 +37,12 @@
         "rebenchmark": "tsc && matcha -R clean -I tdd ./obj/benchmark/run.js"
     },
     "dependencies": {
+        "mustache": "^2.3.0",
+        "nodemailer": "0.7.1",
+        "pip-services-aws-node": "^1.0.0",
         "pip-services-commons-node": "^2.7.0",
         "pip-services-container-node": "^2.0.0",
-        "pip-services-net-node": "^2.0.0",
-        "pip-services-aws-node": "^1.0.0",
-        "nodemailer": "0.7.1",
-        "handlebars": "4.0.11"
+        "pip-services-net-node": "^2.0.0"
     },
     "devDependencies": {
         "@types/node": "*",

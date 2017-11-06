@@ -1,6 +1,6 @@
 let _ = require('lodash');
 let async = require('async');
-let handlebars = require('handlebars');
+let mustache = require('mustache');
 
 import { ConfigParams } from 'pip-services-commons-node';
 import { IConfigurable } from 'pip-services-commons-node';
@@ -144,16 +144,11 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
         return "" + template;
     }
 
-    private compileTemplate(value: any, language: string): any {
-        let template = this.getLanguageTemplate(value, language);
-        return template ? handlebars.compile(template) : null;
-    }
-
     private renderTemplate(value: any, parameters: ConfigParams, language: string = 'en'): string {
-        let template = this.compileTemplate(value, language);
-        return template ? template(parameters) : null;
+        let template = this.getLanguageTemplate(value, language);
+        return template ? mustache.render(template, parameters) : null;
     }
-
+    
     public sendMessage(correlationId: string, message: EmailMessageV1, parameters: ConfigParams,
         callback?: (err: any) => void): void {
         
