@@ -194,7 +194,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void) {
 
         // Skip processing if email is disabled
-        if (this._transport == null || recipient == null || recipient.id == null) {
+        if (this._transport == null || recipient == null || recipient.email == null) {
             if (callback) callback(null);
             return;
         }

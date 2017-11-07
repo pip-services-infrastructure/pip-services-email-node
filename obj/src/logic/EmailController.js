@@ -134,7 +134,7 @@ class EmailController {
     }
     sendMessageToRecipient(correlationId, recipient, message, parameters, callback) {
         // Skip processing if email is disabled
-        if (this._transport == null || recipient == null || recipient.id == null) {
+        if (this._transport == null || recipient == null || recipient.email == null) {
             if (callback)
                 callback(null);
             return;
