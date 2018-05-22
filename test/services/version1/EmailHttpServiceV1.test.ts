@@ -48,7 +48,7 @@ suite('EmailHttpServiceV1', ()=> {
     });
 
     test('Send message', (done) => {
-        rest.post('/email/send_message',
+        rest.post('/v1/email/send_message',
             {
                 message: {
                     to: 'pipdevs@gmail.com',
