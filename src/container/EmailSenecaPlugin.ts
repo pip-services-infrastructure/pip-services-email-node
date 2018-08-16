@@ -1,10 +1,10 @@
 import { References } from 'pip-services-commons-node';
 import { Descriptor } from 'pip-services-commons-node';
 import { ConfigParams } from 'pip-services-commons-node';
-import { ConsoleLogger } from 'pip-services-commons-node';
+import { ConsoleLogger } from 'pip-services-components-node';
 import { ConfigException } from 'pip-services-commons-node';
-import { SenecaPlugin } from 'pip-services-net-node';
-import { SenecaInstance } from 'pip-services-net-node';
+import { SenecaPlugin } from 'pip-services-seneca-node';
+import { SenecaInstance } from 'pip-services-seneca-node';
 
 import { EmailController } from '../logic/EmailController';
 import { EmailSenecaServiceV1 } from '../services/version1/EmailSenecaServiceV1';
@@ -31,7 +31,7 @@ export class EmailSenecaPlugin extends SenecaPlugin {
         let senecaInstance = new SenecaInstance(seneca);
 
         return References.fromTuples(
-            new Descriptor('pip-services-commons', 'logger', 'console', 'default', '1.0'), logger,
+            new Descriptor('pip-services', 'logger', 'console', 'default', '1.0'), logger,
             new Descriptor('pip-services-net', 'seneca', 'instance', 'default', '1.0'), senecaInstance,
             new Descriptor('pip-services-email', 'controller', 'default', 'default', '1.0'), controller,
             new Descriptor('pip-services-email', 'service', 'seneca', 'default', '1.0'), service

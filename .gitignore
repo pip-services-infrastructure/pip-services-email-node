@@ -1,7 +1,7 @@
 /node_modules
 /npm-debug.log
 /.idea
-/data/email_settings.test.json
-/data/email_settings.json
+/data/*
+!/data/dummy.txt
 /obj/test
 /docker/id_rsa*

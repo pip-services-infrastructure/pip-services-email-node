@@ -4,14 +4,14 @@ let _ = require('lodash');
 let async = require('async');
 let mustache = require('mustache');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
-const pip_services_commons_node_3 = require("pip-services-commons-node");
+const pip_services_components_node_1 = require("pip-services-components-node");
+const pip_services_components_node_2 = require("pip-services-components-node");
 const EmailCommandSet_1 = require("./EmailCommandSet");
 class EmailController {
     constructor() {
         this._parameters = new pip_services_commons_node_1.ConfigParams();
-        this._connectionResolver = new pip_services_commons_node_2.ConnectionResolver();
-        this._credentialResolver = new pip_services_commons_node_3.CredentialResolver();
+        this._connectionResolver = new pip_services_components_node_1.ConnectionResolver();
+        this._credentialResolver = new pip_services_components_node_2.CredentialResolver();
     }
     configure(config) {
         this._config = config.setDefaults(EmailController._defaultConfig);
@@ -32,7 +32,7 @@ class EmailController {
             this._commandSet = new EmailCommandSet_1.EmailCommandSet(this);
         return this._commandSet;
     }
-    isOpened() {
+    isOpen() {
         return this._transport != null;
     }
     open(correlationId, callback) {

@@ -22,7 +22,8 @@ try {
     # Test using curl
     Start-Sleep -Seconds 10
     Invoke-WebRequest -Uri http://localhost:8080/heartbeat
-    #Invoke-WebRequest -Uri http://localhost:8080/dashboards/get_dashboards
+    #$postParams = @{to='pipdevs@gmail.com';subject='Test message';text='This is a test message'}
+    #Invoke-WebRequest -Uri http://localhost:8080/v1/email/send_message -Method POST -Body $postParams
 
     Write-Host "The container was successfully built."
 } finally {

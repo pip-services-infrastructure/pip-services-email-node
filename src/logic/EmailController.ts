@@ -8,10 +8,10 @@ import { IReferences } from 'pip-services-commons-node';
 import { Descriptor } from 'pip-services-commons-node';
 import { IReferenceable } from 'pip-services-commons-node';
 import { DependencyResolver } from 'pip-services-commons-node';
-import { ConnectionParams } from 'pip-services-commons-node';
-import { ConnectionResolver } from 'pip-services-commons-node';
-import { CredentialParams } from 'pip-services-commons-node';
-import { CredentialResolver } from 'pip-services-commons-node';
+import { ConnectionParams } from 'pip-services-components-node';
+import { ConnectionResolver } from 'pip-services-components-node';
+import { CredentialParams } from 'pip-services-components-node';
+import { CredentialResolver } from 'pip-services-components-node';
 import { ICommandable } from 'pip-services-commons-node';
 import { CommandSet } from 'pip-services-commons-node';
 import { BadRequestException } from 'pip-services-commons-node';
@@ -69,7 +69,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
         return this._commandSet;
     }
 
-    public isOpened(): boolean {
+    public isOpen(): boolean {
         return this._transport != null;
     }
 
