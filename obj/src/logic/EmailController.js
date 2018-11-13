@@ -134,10 +134,8 @@ class EmailController {
         return parameters;
     }
     sendMessageToRecipient(correlationId, recipient, message, parameters, callback) {
-        console.log("!!! emailController sendMessageToRecipient", recipient);
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
-            console.log("!!! emailController sendMessageToRecipient skipping", this._transport, recipient);
             let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or recipients email not set');
             if (callback)
                 callback(err);
@@ -166,10 +164,8 @@ class EmailController {
         }
     }
     sendMessageToRecipients(correlationId, recipients, message, parameters, callback) {
-        console.log("!!! emailController sendMessageToRecipients", recipients);
         // Skip processing if email is disabled
         if (this._transport == null || recipients == null || recipients.length == 0) {
-            console.log("!!! emailController sendMessageToRecipients skipping", this._transport, recipients);
             let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or no recipients sent');
             if (callback)
                 callback(err);

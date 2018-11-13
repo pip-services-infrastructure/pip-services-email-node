@@ -193,11 +193,8 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
     public sendMessageToRecipient(correlationId: string, recipient: EmailRecipientV1,
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void) {
 
-        console.log("!!! emailController sendMessageToRecipient", recipient);
-
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
-            console.log("!!! emailController sendMessageToRecipient skipping", this._transport, recipient);
             let err = new BadRequestException(
                 correlationId,
                 'EMAIL_DISABLED',
@@ -237,11 +234,8 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
     public sendMessageToRecipients(correlationId: string, recipients: EmailRecipientV1[],
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void): void {
 
-        console.log("!!! emailController sendMessageToRecipients", recipients);
-
         // Skip processing if email is disabled
         if (this._transport == null || recipients == null || recipients.length == 0) {
-            console.log("!!! emailController sendMessageToRecipients skipping", this._transport, recipients);
             let err = new BadRequestException(
                 correlationId,
                 'EMAIL_DISABLED',
