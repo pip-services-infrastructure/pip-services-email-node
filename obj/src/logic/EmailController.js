@@ -6,6 +6,7 @@ let mustache = require('mustache');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
 const pip_services_components_node_1 = require("pip-services-components-node");
 const pip_services_components_node_2 = require("pip-services-components-node");
+const pip_services_commons_node_2 = require("pip-services-commons-node");
 const EmailCommandSet_1 = require("./EmailCommandSet");
 class EmailController {
     constructor() {
@@ -133,10 +134,13 @@ class EmailController {
         return parameters;
     }
     sendMessageToRecipient(correlationId, recipient, message, parameters, callback) {
+        console.log("!!! emailController sendMessageToRecipient", recipient);
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
+            console.log("!!! emailController sendMessageToRecipient skipping", this._transport, recipient);
+            let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or recipients email not set');
             if (callback)
-                callback(null);
+                callback(err);
             return;
         }
         try {
@@ -162,10 +166,13 @@ class EmailController {
         }
     }
     sendMessageToRecipients(correlationId, recipients, message, parameters, callback) {
+        console.log("!!! emailController sendMessageToRecipients", recipients);
         // Skip processing if email is disabled
         if (this._transport == null || recipients == null || recipients.length == 0) {
+            console.log("!!! emailController sendMessageToRecipients skipping", this._transport, recipients);
+            let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or no recipients sent');
             if (callback)
-                callback(null);
+                callback(err);
             return;
         }
         // Send email separately to each user

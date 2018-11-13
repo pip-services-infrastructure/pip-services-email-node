@@ -126,7 +126,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
 
         callback(null);
     }
-    
+
     private getLanguageTemplate(value: any, language: string = 'en') {
         if (value == null) return value;
         if (!_.isObject(value)) return value;
@@ -140,7 +140,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
         // Get template for default language
         if (template == null)
             template = value["en"];
-        
+
         return "" + template;
     }
 
@@ -151,7 +151,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
 
     public sendMessage(correlationId: string, message: EmailMessageV1, parameters: ConfigParams,
         callback?: (err: any) => void): void {
-        
+
         // Skip processing if email is disabled or message has no destination
         if (this._transport == null || message.to == null) {
             if (callback) callback(null);
@@ -170,14 +170,14 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
                 cc: message.cc || this._messageCc,
                 bcc: message.bcc || this._messageBcc,
                 replyTo: message.reply_to || this._messageReplyTo,
-                
+
                 to: message.to,
- 
+
                 subject: subject,
                 text: text,
                 html: html
             };
-            
+
             this._transport.sendMail(envelop, callback);
         } catch (ex) {
             callback(ex);
@@ -193,9 +193,17 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
     public sendMessageToRecipient(correlationId: string, recipient: EmailRecipientV1,
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void) {
 
+        console.log("!!! emailController sendMessageToRecipient", recipient);
+
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
-            if (callback) callback(null);
+            console.log("!!! emailController sendMessageToRecipient skipping", this._transport, recipient);
+            let err = new BadRequestException(
+                correlationId,
+                'EMAIL_DISABLED',
+                'emails disabled, or recipients email not set'
+            );
+            if (callback) callback(err);
             return;
         }
 
@@ -212,14 +220,14 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
                 cc: message.cc || this._messageCc,
                 bcc: message.bcc || this._messageBcc,
                 replyTo: message.reply_to || this._messageReplyTo,
-                
+
                 to: recipient.email,
 
                 subject: subject,
                 text: text,
                 html: html
             };
-            
+
             this._transport.sendMail(envelop, callback);
         } catch (ex) {
             callback(ex);
@@ -229,15 +237,23 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
     public sendMessageToRecipients(correlationId: string, recipients: EmailRecipientV1[],
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void): void {
 
+        console.log("!!! emailController sendMessageToRecipients", recipients);
+
         // Skip processing if email is disabled
         if (this._transport == null || recipients == null || recipients.length == 0) {
-            if (callback) callback(null);
+            console.log("!!! emailController sendMessageToRecipients skipping", this._transport, recipients);
+            let err = new BadRequestException(
+                correlationId,
+                'EMAIL_DISABLED',
+                'emails disabled, or no recipients sent'
+            );
+            if (callback) callback(err);
             return;
         }
 
         // Send email separately to each user
         async.each(recipients, (recipient, callback) => {
-            this.sendMessageToRecipient(correlationId, recipient, message, parameters, callback); 
+            this.sendMessageToRecipient(correlationId, recipient, message, parameters, callback);
         }, callback);
     }
 
