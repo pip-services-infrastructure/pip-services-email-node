@@ -193,6 +193,10 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
     public sendMessageToRecipient(correlationId: string, recipient: EmailRecipientV1,
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void) {
 
+        console.log("!!! message=", message);
+        console.log("!!! parameters=", parameters);
+        console.log("!!! recipient=", recipient);
+
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
             let err = new BadRequestException(
