@@ -134,9 +134,6 @@ class EmailController {
         return parameters;
     }
     sendMessageToRecipient(correlationId, recipient, message, parameters, callback) {
-        console.log("!!! message=", message);
-        console.log("!!! parameters=", parameters);
-        console.log("!!! recipient=", recipient);
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
             let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or recipients email not set');
