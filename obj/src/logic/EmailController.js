@@ -143,14 +143,10 @@ class EmailController {
         }
         try {
             let recParams = this.makeRecipientParameters(recipient, parameters);
-            console.log("!!! recParams", recParams);
             let recLanguage = recipient.language;
             let subject = this.renderTemplate(message.subject, recParams, recLanguage);
-            console.log("!!! subject", subject);
             let text = this.renderTemplate(message.text, recParams, recLanguage);
-            console.log("!!! text", text);
             let html = this.renderTemplate(message.html, recParams, recLanguage);
-            console.log("!!! html", html);
             let envelop = {
                 from: message.from || this._messageFrom,
                 cc: message.cc || this._messageCc,
@@ -161,7 +157,6 @@ class EmailController {
                 text: text,
                 html: html
             };
-            console.log("!!! envelop", envelop);
             this._transport.sendMail(envelop, callback);
         }
         catch (ex) {
