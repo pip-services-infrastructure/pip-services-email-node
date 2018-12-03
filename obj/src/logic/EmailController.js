@@ -103,8 +103,9 @@ class EmailController {
     sendMessage(correlationId, message, parameters, callback) {
         // Skip processing if email is disabled or message has no destination
         if (this._transport == null || message.to == null) {
+            let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or email recipient not set');
             if (callback)
-                callback(null);
+                callback(err);
             return;
         }
         try {

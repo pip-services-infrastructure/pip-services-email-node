@@ -154,7 +154,12 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
 
         // Skip processing if email is disabled or message has no destination
         if (this._transport == null || message.to == null) {
-            if (callback) callback(null);
+            let err = new BadRequestException(
+                correlationId,
+                'EMAIL_DISABLED',
+                'emails disabled, or email recipient not set'
+            );
+            if (callback) callback(err);
             return;
         }
 
