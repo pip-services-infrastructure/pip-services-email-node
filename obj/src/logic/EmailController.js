@@ -3,16 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 let async = require('async');
 let mustache = require('mustache');
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_components_node_1 = require("pip-services-components-node");
-const pip_services_components_node_2 = require("pip-services-components-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
+const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const pip_services3_components_node_1 = require("pip-services3-components-node");
+const pip_services3_components_node_2 = require("pip-services3-components-node");
+const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const EmailCommandSet_1 = require("./EmailCommandSet");
 class EmailController {
     constructor() {
-        this._parameters = new pip_services_commons_node_1.ConfigParams();
-        this._connectionResolver = new pip_services_components_node_1.ConnectionResolver();
-        this._credentialResolver = new pip_services_components_node_2.CredentialResolver();
+        this._parameters = new pip_services3_commons_node_1.ConfigParams();
+        this._connectionResolver = new pip_services3_components_node_1.ConnectionResolver();
+        this._credentialResolver = new pip_services3_components_node_2.CredentialResolver();
     }
     configure(config) {
         this._config = config.setDefaults(EmailController._defaultConfig);
@@ -103,7 +103,7 @@ class EmailController {
     sendMessage(correlationId, message, parameters, callback) {
         // Skip processing if email is disabled or message has no destination
         if (this._transport == null || message.to == null) {
-            let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or email recipient not set');
+            let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or email recipient not set');
             if (callback)
                 callback(err);
             return;
@@ -137,7 +137,7 @@ class EmailController {
     sendMessageToRecipient(correlationId, recipient, message, parameters, callback) {
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
-            let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or recipients email not set');
+            let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or recipients email not set');
             if (callback)
                 callback(err);
             return;
@@ -167,7 +167,7 @@ class EmailController {
     sendMessageToRecipients(correlationId, recipients, message, parameters, callback) {
         // Skip processing if email is disabled
         if (this._transport == null || recipients == null || recipients.length == 0) {
-            let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or no recipients sent');
+            let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or no recipients sent');
             if (callback)
                 callback(err);
             return;
@@ -178,6 +178,6 @@ class EmailController {
         }, callback);
     }
 }
-EmailController._defaultConfig = pip_services_commons_node_1.ConfigParams.fromTuples('message.from', null, 'message.cc', null, 'message.bcc', null, 'message.reply_to', null);
+EmailController._defaultConfig = pip_services3_commons_node_1.ConfigParams.fromTuples('message.from', null, 'message.cc', null, 'message.bcc', null, 'message.reply_to', null);
 exports.EmailController = EmailController;
 //# sourceMappingURL=EmailController.js.map

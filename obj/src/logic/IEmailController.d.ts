@@ -1,4 +1,4 @@
-import { ConfigParams } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
 import { EmailMessageV1 } from '../data/version1/EmailMessageV1';
 import { EmailRecipientV1 } from '../data/version1/EmailRecipientV1';
 export interface IEmailController {
