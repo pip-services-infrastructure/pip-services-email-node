@@ -52,7 +52,6 @@
         "@types/async": "^2.0.0",
         "@types/chai": "*",
         "@types/mocha": "*",
-        "seneca": "^3.3.0",
         "restify": "^4.3.0",
         "chai": "*",
         "matcha": "*",
