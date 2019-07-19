@@ -4,5 +4,7 @@ export declare class EmailServiceFactory extends Factory {
     static Descriptor: Descriptor;
     static ControllerDescriptor: Descriptor;
     static HttpServiceDescriptor: Descriptor;
+    static CommandableGrpcServiceDescriptor: Descriptor;
+    static GrpcServiceDescriptor: Descriptor;
     constructor();
 }

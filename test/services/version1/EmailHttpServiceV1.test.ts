@@ -23,7 +23,9 @@ suite('EmailHttpServiceV1', ()=> {
 
     suiteSetup((done) => {
         let controller = new EmailController();
-        controller.configure(new ConfigParams());
+        controller.configure(ConfigParams.fromTuples(
+            'options.disabled', true
+        ));
 
         service = new EmailHttpServiceV1();
         service.configure(httpConfig);

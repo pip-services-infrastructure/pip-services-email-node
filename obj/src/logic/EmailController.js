@@ -13,6 +13,7 @@ class EmailController {
         this._parameters = new pip_services3_commons_node_1.ConfigParams();
         this._connectionResolver = new pip_services3_components_node_1.ConnectionResolver();
         this._credentialResolver = new pip_services3_components_node_2.CredentialResolver();
+        this._disabled = false;
     }
     configure(config) {
         this._config = config.setDefaults(EmailController._defaultConfig);
@@ -21,6 +22,7 @@ class EmailController {
         this._messageBcc = config.getAsStringWithDefault("message.bcc", this._messageBcc);
         this._messageReplyTo = config.getAsStringWithDefault("message.reply_to", this._messageReplyTo);
         this._parameters = config.getSection("parameters");
+        this._disabled = config.getAsBooleanWithDefault("options.disabled", this._disabled);
         this._connectionResolver.configure(config);
         this._credentialResolver.configure(config);
     }
@@ -63,16 +65,17 @@ class EmailController {
                     let params = {
                         service: this._connection.getAsString('service'),
                         host: this._connection.getHost(),
-                        secureConnection: this._connection.getAsBoolean('ssl'),
+                        secure: this._connection.getAsBoolean('ssl'),
                         port: this._connection.getPort(),
                     };
                     if (this._credential != null) {
                         params.auth = {
+                            type: this._credential.getAsString("type"),
                             user: this._credential.getUsername(),
                             pass: this._credential.getPassword()
                         };
                     }
-                    this._transport = nodemailer.createTransport('SMTP', params);
+                    this._transport = nodemailer.createTransport(params);
                 }
                 callback();
             }
@@ -101,6 +104,12 @@ class EmailController {
         return template ? mustache.render(template, parameters) : null;
     }
     sendMessage(correlationId, message, parameters, callback) {
+        // Silentry skip if disabled
+        if (this._disabled) {
+            if (callback)
+                callback(null);
+            return;
+        }
         // Skip processing if email is disabled or message has no destination
         if (this._transport == null || message.to == null) {
             let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or email recipient not set');
@@ -135,6 +144,12 @@ class EmailController {
         return parameters;
     }
     sendMessageToRecipient(correlationId, recipient, message, parameters, callback) {
+        // Silentry skip if disabled
+        if (this._disabled) {
+            if (callback)
+                callback(null);
+            return;
+        }
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
             let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or recipients email not set');
@@ -165,6 +180,12 @@ class EmailController {
         }
     }
     sendMessageToRecipients(correlationId, recipients, message, parameters, callback) {
+        // Silentry skip if disabled
+        if (this._disabled) {
+            if (callback)
+                callback(null);
+            return;
+        }
         // Skip processing if email is disabled
         if (this._transport == null || recipients == null || recipients.length == 0) {
             let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'EMAIL_DISABLED', 'emails disabled, or no recipients sent');

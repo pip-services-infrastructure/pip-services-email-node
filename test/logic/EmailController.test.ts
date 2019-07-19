@@ -23,7 +23,7 @@ suite('EmailController', ()=> {
     let messageFrom = process.env['MESSAGE_FROM'] || "somebody@somewhere.com";
     let messageTo = process.env['MESSAGE_TO'];
 
-    if (emailUser == null) return;
+    // if (emailUser == null) return;
 
     suiteSetup((done) => {
         controller = new EmailController();
@@ -37,7 +37,9 @@ suite('EmailController', ()=> {
             "connection.ssl", emailSsl,
 
             "credential.username", emailUser,
-            "credential.password", emailPassword
+            "credential.password", emailPassword,
+
+            "options.disabled", emailUser == null || messageTo == null
         );
         controller.configure(config);
 

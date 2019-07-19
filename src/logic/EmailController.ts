@@ -44,6 +44,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
     private _credentialResolver: CredentialResolver = new CredentialResolver();
     private _transport: any;
     private _commandSet: EmailCommandSet;
+    private _disabled: boolean = false;
 
     public configure(config: ConfigParams): void {
         this._config = config.setDefaults(EmailController._defaultConfig);
@@ -53,6 +54,7 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
         this._messageBcc = config.getAsStringWithDefault("message.bcc", this._messageBcc);
         this._messageReplyTo = config.getAsStringWithDefault("message.reply_to", this._messageReplyTo);
         this._parameters = config.getSection("parameters");
+        this._disabled = config.getAsBooleanWithDefault("options.disabled", this._disabled);
 
         this._connectionResolver.configure(config);
         this._credentialResolver.configure(config);
@@ -102,18 +104,19 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
                     let params: any = {
                         service: this._connection.getAsString('service'),
                         host: this._connection.getHost(),
-                        secureConnection: this._connection.getAsBoolean('ssl'),
+                        secure: this._connection.getAsBoolean('ssl'),
                         port: this._connection.getPort(),
                     };
 
                     if (this._credential != null) {
                         params.auth = {
+                            type: this._credential.getAsString("type"),
                             user: this._credential.getUsername(),
                             pass: this._credential.getPassword()
                         }
                     }
 
-                    this._transport = nodemailer.createTransport('SMTP', params);
+                    this._transport = nodemailer.createTransport(params);
                 }
 
                 callback();
@@ -151,6 +154,12 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
 
     public sendMessage(correlationId: string, message: EmailMessageV1, parameters: ConfigParams,
         callback?: (err: any) => void): void {
+
+        // Silentry skip if disabled
+        if (this._disabled) {
+            if (callback) callback(null);
+            return;
+        }
 
         // Skip processing if email is disabled or message has no destination
         if (this._transport == null || message.to == null) {
@@ -198,6 +207,12 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
     public sendMessageToRecipient(correlationId: string, recipient: EmailRecipientV1,
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void) {
 
+        // Silentry skip if disabled
+        if (this._disabled) {
+            if (callback) callback(null);
+            return;
+        }
+
         // Skip processing if email is disabled
         if (this._transport == null || recipient == null || recipient.email == null) {
             let err = new BadRequestException(
@@ -238,6 +253,12 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
 
     public sendMessageToRecipients(correlationId: string, recipients: EmailRecipientV1[],
         message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void): void {
+
+        // Silentry skip if disabled
+        if (this._disabled) {
+            if (callback) callback(null);
+            return;
+        }
 
         // Skip processing if email is disabled
         if (this._transport == null || recipients == null || recipients.length == 0) {

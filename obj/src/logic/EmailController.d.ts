@@ -22,16 +22,17 @@ export declare class EmailController implements IConfigurable, IReferenceable, I
     private _credentialResolver;
     private _transport;
     private _commandSet;
+    private _disabled;
     configure(config: ConfigParams): void;
     setReferences(references: IReferences): void;
     getCommandSet(): CommandSet;
     isOpen(): boolean;
     open(correlationId: string, callback: (err: any) => void): void;
     close(correlationId: string, callback: (err: any) => void): void;
-    private getLanguageTemplate(value, language?);
-    private renderTemplate(value, parameters, language?);
+    private getLanguageTemplate;
+    private renderTemplate;
     sendMessage(correlationId: string, message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void): void;
-    private makeRecipientParameters(recipient, parameters);
+    private makeRecipientParameters;
     sendMessageToRecipient(correlationId: string, recipient: EmailRecipientV1, message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void): void;
     sendMessageToRecipients(correlationId: string, recipients: EmailRecipientV1[], message: EmailMessageV1, parameters: ConfigParams, callback?: (err: any) => void): void;
 }

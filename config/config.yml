@@ -13,39 +13,41 @@
   level: "trace"
 
 # Default controller
-# - descriptor: "pip-services-email:controller:default:default:1.0"
-#   connection:
-#     service: "{{{EMAIL_SERVICE}}}"
-#     host: "{{{EMAIL_SERVICE_HOST}}}"
-#     secure_connection: "{{{EMAIL_SSL}}}"
-#     port: "{{{EMAIL_SERVICE_PORT}}}"
-#   credential:
-#     username: "{{{EMAIL_USER}}}"
-#     password: "{{{EMAIL_PASS}}}"
-#   message:
-#     from: "{{{EMAIL_FROM}}}"
-#   parameters:
-#     client_name: "{{{CLIENT_NAME}}}"
-#     client_url: "{{{CLIENT_URL}}}"
-#     server_url: "{{{SERVER_URL}}}"
-#     signature: "{{{EMAIL_SIGNATURE}}}"
 - descriptor: "pip-services-email:controller:default:default:1.0"
   connection:
-    service: Gmail
-    host: host233.hostmonster.com
-    secure_connection: "true"
-    port: "465"
+    service: "{{{EMAIL_SERVICE}}}"
+    host: "{{{EMAIL_SERVICE_HOST}}}"
+    secure_connection: "{{{EMAIL_SSL}}}"
+    port: "{{{EMAIL_SERVICE_PORT}}}"
   credential:
-    username: "info@iquipsys.com"
-    password: "iQuipsys#01"
+    username: "{{{EMAIL_USER}}}"
+    password: "{{{EMAIL_PASS}}}"
   message:
-    from: positron@iquipsys.com
+    from: "{{{EMAIL_FROM}}}"
   parameters:
-    client_name: iQuipsys Positron
-    client_url: http://www.positron.iquipsys.net
-    server_url: api.positron.iquipsys.net
-    signature: Yours iQuipsys support
+    client_name: "{{{CLIENT_NAME}}}"
+    client_url: "{{{CLIENT_URL}}}"
+    server_url: "{{{SERVER_URL}}}"
+    signature: "{{{EMAIL_SIGNATURE}}}"
+# - descriptor: "pip-services-email:controller:default:default:1.0"
+#   connection:
+#     service: Gmail
+#     host: host233.hostmonster.com
+#     secure_connection: "true"
+#     port: "465"
+#   credential:
+#     username: "info@iquipsys.com"
+#     password: "iQuipsys#01"
+#   message:
+#     from: positron@iquipsys.com
+#   parameters:
+#     client_name: iQuipsys Positron
+#     client_url: http://www.positron.iquipsys.net
+#     server_url: api.positron.iquipsys.net
+#     signature: Yours iQuipsys support
 
+
+{{#if HTTP_ENABLED}}
 # Common HTTP endpoint
 - descriptor: "pip-services:endpoint:http:default:1.0"
   connection:
@@ -61,3 +63,19 @@
 
 # Status service
 - descriptor: "pip-services:status-service:http:default:1.0"
+{{/if}}
+
+{{#if GRPC_ENABLED}}
+# Common GRPC endpoint
+- descriptor: "pip-services:endpoint:grpc:default:1.0"
+  connection:
+    protocol: "http"
+    host: "0.0.0.0"
+    port: 8090
+
+# GRPC endpoint version 1.0
+- descriptor: "pip-services-email:service:grpc:default:1.0"
+
+# Commandable GRPC endpoint version 1.0
+- descriptor: "pip-services-email:service:commandable-grpc:default:1.0"
+{{/if}}
