@@ -81,7 +81,7 @@ class EmailGrpcConverterV1 {
     static fromMessage(message) {
         if (message == null)
             return null;
-        let obj = new messages.Account();
+        let obj = new messages.EmailMessage();
         obj.setFrom(message.from);
         obj.setCc(message.cc);
         obj.setBcc(message.bcc);
@@ -110,7 +110,7 @@ class EmailGrpcConverterV1 {
     static fromRecipient(recipient) {
         if (recipient == null)
             return null;
-        let obj = new messages.Account();
+        let obj = new messages.EmailRecipient();
         obj.setId(recipient.id);
         obj.setName(recipient.name);
         obj.setEmail(recipient.email);

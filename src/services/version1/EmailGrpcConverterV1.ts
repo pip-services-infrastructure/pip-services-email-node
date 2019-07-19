@@ -1,10 +1,6 @@
 let _ = require('lodash');
 let messages = require('../../../../src/protos/email_v1_pb');
 
-import { DataPage } from 'pip-services3-commons-node';
-import { PagingParams } from 'pip-services3-commons-node';
-import { StringConverter } from 'pip-services3-commons-node';
-import { DateTimeConverter } from 'pip-services3-commons-node';
 import { ErrorDescriptionFactory } from 'pip-services3-commons-node';
 import { ErrorDescription } from 'pip-services3-commons-node';
 import { ApplicationExceptionFactory } from 'pip-services3-commons-node';
@@ -97,7 +93,7 @@ export class EmailGrpcConverterV1 {
     public static fromMessage(message: EmailMessageV1): any {
         if (message == null) return null;
 
-        let obj = new messages.Account();
+        let obj = new messages.EmailMessage();
 
         obj.setFrom(message.from);
         obj.setCc(message.cc);
@@ -131,7 +127,7 @@ export class EmailGrpcConverterV1 {
     public static fromRecipient(recipient: EmailRecipientV1): any {
         if (recipient == null) return null;
 
-        let obj = new messages.Account();
+        let obj = new messages.EmailRecipient();
 
         obj.setId(recipient.id);
         obj.setName(recipient.name);
