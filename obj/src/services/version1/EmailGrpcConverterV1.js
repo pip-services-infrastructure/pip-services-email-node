@@ -121,7 +121,7 @@ class EmailGrpcConverterV1 {
         if (obj == null)
             return null;
         let recipient = {
-            id: obj.getFrom(),
+            id: obj.getId(),
             name: obj.getName(),
             email: obj.getEmail(),
             language: obj.getLanguage()
