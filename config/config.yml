@@ -17,7 +17,7 @@
   connection:
     service: "{{{EMAIL_SERVICE}}}"
     host: "{{{EMAIL_SERVICE_HOST}}}"
-    secure_connection: "{{{EMAIL_SSL}}}"
+    ssl: "{{{EMAIL_SSL}}}"
     port: "{{{EMAIL_SERVICE_PORT}}}"
   credential:
     username: "{{{EMAIL_USER}}}"
@@ -29,6 +29,8 @@
     client_url: "{{{CLIENT_URL}}}"
     server_url: "{{{SERVER_URL}}}"
     signature: "{{{EMAIL_SIGNATURE}}}"
+  options:
+    disabled: {{{EMAIL_DISABLED}}}
 # - descriptor: "pip-services-email:controller:default:default:1.0"
 #   connection:
 #     service: Gmail

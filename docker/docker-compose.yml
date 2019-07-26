@@ -10,6 +10,7 @@ services:
     environment:
       - HTTP_ENABLED=true
       - GRPC_ENABLED=true
+      - EMAIL_DISABLED=true
     ports:
       - "8080:8080"
       - "8090:8090"
