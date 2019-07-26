@@ -1,16 +1,36 @@
 FROM pipdevs/node:8.4.0
 
-# set working directory
+# Install python
+RUN apk add --update \
+    python \
+    python-dev \
+    py-pip \
+    build-base \
+  && pip install virtualenv \
+  && rm -rf /var/cache/apk/*
+  
+# Install git and ssh
+RUN apk update && apk add git && apk add openssh \
+    && apk add python && apk add make && apk add g++
+
+# Copy local ssh keys
+COPY docker/id_rsa /root/.ssh/
+
+# Setup ssh access to github repositories
+RUN chmod 600 /root/.ssh/id_rsa* \
+    && ssh-keyscan github.com >> ~/.ssh/known_hosts \
+    && ssh-keyscan gitlab.com >> ~/.ssh/known_hosts 
+
+# Set working directory
 WORKDIR /app
 
-# copy project file
+# Copy project file
 COPY package.json .
 
-# install only production dependencies
-#RUN npm install --only=production
+# Install ALL node_modules, including 'devDependencies'
 RUN npm install
 
-# copy the entire project
+# Copy entire project
 COPY . .
 
 # set default environment variables
@@ -20,5 +40,6 @@ ENV MONGO_SERVICE_PORT 27017
 ENV MONGO_DB app
 
 EXPOSE 8080
+EXPOSE 8090
 
 ENTRYPOINT [ "node", "./bin/run.js" ]
