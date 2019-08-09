@@ -85,9 +85,6 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
             (callback) => {
                 this._connectionResolver.resolve(correlationId, (err, connection) => {
                     this._connection = connection;
-                    // Hack!!!
-                    if (this._connection != null && this._connection.getAsString('service') == null)
-                        this._connection = null;
                     callback(err);
                 });
             },
@@ -102,7 +99,6 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
                     let nodemailer = require('nodemailer');
 
                     let params: any = {
-                        service: this._connection.getAsString('service'),
                         host: this._connection.getHost(),
                         secure: this._connection.getAsBoolean('ssl'),
                         port: this._connection.getPort(),

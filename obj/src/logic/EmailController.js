@@ -47,9 +47,6 @@ class EmailController {
             (callback) => {
                 this._connectionResolver.resolve(correlationId, (err, connection) => {
                     this._connection = connection;
-                    // Hack!!!
-                    if (this._connection != null && this._connection.getAsString('service') == null)
-                        this._connection = null;
                     callback(err);
                 });
             },
@@ -63,7 +60,6 @@ class EmailController {
                 if (this._connection != null) {
                     let nodemailer = require('nodemailer');
                     let params = {
-                        service: this._connection.getAsString('service'),
                         host: this._connection.getHost(),
                         secure: this._connection.getAsBoolean('ssl'),
                         port: this._connection.getPort(),

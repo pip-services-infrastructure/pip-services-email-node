@@ -13,8 +13,7 @@ import { EmailController } from '../../src/logic/EmailController';
 suite('EmailController', ()=> {
     let controller: EmailController;
 
-    let emailService = process.env['EMAIL_SERVICE'] || "Gmail";
-    let emailHost = process.env['EMAIL_HOST'] || "smtp.gmail.com";
+    let emailHost = process.env['EMAIL_HOST'] || "smtp@gmail.com";
     let emailPort = process.env['EMAIL_PORT'] || 465;
     let emailSsl = process.env['EMAIL_SSL'] || true;
     let emailUser = process.env['EMAIL_USER'];
@@ -31,7 +30,6 @@ suite('EmailController', ()=> {
         let config = ConfigParams.fromTuples(
             "message.from", messageFrom,
 
-            "connection.service", emailService,
             "connection.host", emailHost,
             "connection.port", emailPort,
             "connection.ssl", emailSsl,
