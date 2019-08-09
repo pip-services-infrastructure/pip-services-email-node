@@ -100,7 +100,9 @@ export class EmailController implements IConfigurable, IReferenceable, ICommanda
 
                     let params: any = {
                         host: this._connection.getHost(),
-                        secure: this._connection.getAsBoolean('ssl'),
+                        secure: this._connection.getAsBoolean('ssl')
+                            || this._connection.getAsBoolean('secure')
+                            || this._connection.getAsBoolean('secure_connection'),
                         port: this._connection.getPort(),
                     };
 

@@ -34,7 +34,7 @@
 #   connection:
 #     service: Gmail
 #     host: host233.hostmonster.com
-#     secure_connection: "true"
+#     ssl: "true"
 #     port: "465"
 #   credential:
 #     username: "info@iquipsys.com"
