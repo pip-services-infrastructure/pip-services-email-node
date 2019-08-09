@@ -15,7 +15,6 @@
 # Default controller
 - descriptor: "pip-services-email:controller:default:default:1.0"
   connection:
-    service: "{{{EMAIL_SERVICE}}}"
     host: "{{{EMAIL_SERVICE_HOST}}}"
     ssl: "{{{EMAIL_SSL}}}"
     port: "{{{EMAIL_SERVICE_PORT}}}"
