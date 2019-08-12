@@ -54,7 +54,7 @@
         "@types/node": "*",
         "@types/lodash": "^4.0.0",
         "@types/async": "^2.0.0",
-        "@types/chai": "*",
+        "@types/chai": "4.1.7",
         "@types/mocha": "*",
         "restify": "^4.3.0",
         "chai": "*",
