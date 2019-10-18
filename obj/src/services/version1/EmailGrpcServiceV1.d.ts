@@ -4,8 +4,8 @@ export declare class EmailGrpcServiceV1 extends GrpcService {
     private _controller;
     constructor();
     setReferences(references: IReferences): void;
-    private sendMessage(call, callback);
-    private sendMessageToRecipient(call, callback);
-    private sendMessageToRecipients(call, callback);
+    private sendMessage;
+    private sendMessageToRecipient;
+    private sendMessageToRecipients;
     register(): void;
 }

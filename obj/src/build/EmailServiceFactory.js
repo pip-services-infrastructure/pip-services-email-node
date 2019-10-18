@@ -15,10 +15,10 @@ class EmailServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(EmailServiceFactory.GrpcServiceDescriptor, EmailGrpcServiceV1_1.EmailGrpcServiceV1);
     }
 }
+exports.EmailServiceFactory = EmailServiceFactory;
 EmailServiceFactory.Descriptor = new pip_services3_commons_node_1.Descriptor("pip-services-email", "factory", "default", "default", "1.0");
 EmailServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-email", "controller", "default", "*", "1.0");
 EmailServiceFactory.HttpServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-email", "service", "http", "*", "1.0");
 EmailServiceFactory.CommandableGrpcServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-email", "service", "commandable-grpc", "*", "1.0");
 EmailServiceFactory.GrpcServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-email", "service", "grpc", "*", "1.0");
-exports.EmailServiceFactory = EmailServiceFactory;
 //# sourceMappingURL=EmailServiceFactory.js.map

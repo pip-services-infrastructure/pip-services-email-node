@@ -5,8 +5,8 @@ export declare class EmailGrpcConverterV1 {
     static toError(obj: any): any;
     static setMap(map: any, values: any): void;
     static getMap(map: any): any;
-    private static toJson(value);
-    private static fromJson(value);
+    private static toJson;
+    private static fromJson;
     static fromMessage(message: EmailMessageV1): any;
     static toMessage(obj: any): EmailMessageV1;
     static fromRecipient(recipient: EmailRecipientV1): any;

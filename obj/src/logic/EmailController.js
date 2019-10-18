@@ -197,6 +197,6 @@ class EmailController {
         }, callback);
     }
 }
-EmailController._defaultConfig = pip_services3_commons_node_1.ConfigParams.fromTuples('message.from', null, 'message.cc', null, 'message.bcc', null, 'message.reply_to', null);
 exports.EmailController = EmailController;
+EmailController._defaultConfig = pip_services3_commons_node_1.ConfigParams.fromTuples('message.from', null, 'message.cc', null, 'message.bcc', null, 'message.reply_to', null);
 //# sourceMappingURL=EmailController.js.map
