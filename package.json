@@ -1,6 +1,6 @@
 {
     "name": "pip-services-email-node",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "author": "Conceptual Vision Consulting LLC",
     "description": "Email delivery sending microservice in Node.js",
     "contributors": [
@@ -58,7 +58,6 @@
         "@types/mocha": "*",
         "restify": "^4.3.0",
         "chai": "*",
-        "matcha": "*",
         "mocha": "*"
     }
 }
